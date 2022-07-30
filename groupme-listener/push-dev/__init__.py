@@ -24,7 +24,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if attachmentUrl == 'None':
         attachmentUrl = ''
 
-    if name == 'discord-pusher':
+    if name == 'discord-pusher-dev':
         return func.HttpResponse('was a bot message')
 
     data = { "content": f'{msg} {attachmentUrl}' }
