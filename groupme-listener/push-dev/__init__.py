@@ -16,11 +16,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     req_body = req.get_json()
     name = req_body.get('name')
     message = req_body.get('text')
-    msg = f'{name}: {message}'
+    msg = f'**{name}**: {message}'
     attachments = req_body.get('attachments')
     attachmentUrl = ''
     if attachments:
         attachmentUrl = str(attachments[0].get('url'))
+        logging.info(str(req_body))
     if attachmentUrl == 'None':
         attachmentUrl = ''
 
