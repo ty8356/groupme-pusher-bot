@@ -26,6 +26,9 @@ async def on_message(message):
     await bot.process_commands(message)
     channel = message.channel.name
 
+    if message.author.display_name == 'groupme-listener':
+        return;
+
     if channel == BOT_CHANNEL:
         content = message.content
         author = message.author.display_name
