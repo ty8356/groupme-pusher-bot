@@ -17,10 +17,15 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     name = req_body.get('name')
     message = req_body.get('text')
     msg = f'{name}: {message}'
+    attachments = req_body.get('attachments')
+    attachmentUrl = ''
+    if attachments:
+        attachmentUrl = str(attachments[0].get('url'))
 
     if name == 'discord-pusher':
         return func.HttpResponse('was a bot message')
 
-    data = { "content": msg }
+    data = { "content": f'{msg} {attachmentUrl}' }
+    # data = { "content": msg, "embed": { "image": { "url": attachmentUrl } } }
 
     response = requests.post(WEBHOOK, json = data)
