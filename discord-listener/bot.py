@@ -21,6 +21,7 @@ BOT_CHANNEL = os.environ["BOT_CHANNEL"]
 GROUPME_BOT_ID = os.environ["GROUPME_BOT_ID"]
 GROUPME_ACCESS_TOKEN = os.environ["GROUPME_ACCESS_TOKEN"]
 GROUPME_IMAGE_URL = os.environ["GROUPME_IMAGE_URL"]
+GROUPME_LISTENER_NAME = os.environ["GROUPME_LISTENER_NAME"]
 
 @bot.event
 async def on_ready():
@@ -31,7 +32,7 @@ async def on_message(message):
     await bot.process_commands(message)
     channel = message.channel.name
 
-    if message.author.display_name == 'groupme-listener':
+    if message.author.display_name == GROUPME_LISTENER_NAME:
         return;
 
     if message.attachments:
